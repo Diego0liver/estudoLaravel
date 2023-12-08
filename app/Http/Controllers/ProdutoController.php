@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoReq;
 use App\Models\Produtos;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,19 @@ class ProdutoController extends Controller
      return $getAllProdut;
     }
 
-    public function store(Request $request){
+    public function store(ProdutoReq $request){
         $newProduto = new Produtos;
         $newProduto->nome = $request->nome;
         $newProduto->preco = $request->preco;
 
+        // $request->validate([
+        //    'nome' => 'required|min:3',
+        //    'preco' => 'required|max:3'
+        // ]);
+      
         $newProduto->save();
         if($newProduto){
-            return $newProduto;
+         return $newProduto;
         }else{
         return response()->json([
              'mensagem' => 'algo deu errado'
