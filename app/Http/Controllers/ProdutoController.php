@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class ProdutoController extends Controller
 {
     public function index(){
-        $getAllProdut = Produtos::all();
+    // $getAllProdut = Produtos::all();
+    $getAllProdut = Produtos::paginate(perPage: 5);
      
      return $getAllProdut;
     }
