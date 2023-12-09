@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 class ConteectController extends Controller
 {
     public function index(){
-       return view('contact');
+       return view('components.index');
     }
 
     public function store(Request $req){
@@ -22,4 +22,5 @@ class ConteectController extends Controller
 
        var_dump('email enviado');
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConteectController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contato', [ConteectController:: class, 'index'])->name('contact.index');
-Route::post('/contato', [ConteectController:: class, 'store'])->name('contact.store');
+Route::get('/contato', [ConteectController:: class, 'index'])->name('app.index');
+Route::get('/form', [ProdutoController:: class, 'form'])->name('form');
+Route::post('/contato', [ConteectController:: class, 'store'])->name('app.store');
+Route::post('/form', [ProdutoController:: class, 'store'])->name('store');

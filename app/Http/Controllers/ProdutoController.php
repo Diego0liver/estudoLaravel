@@ -27,7 +27,8 @@ class ProdutoController extends Controller
       
         $newProduto->save();
         if($newProduto){
-         return $newProduto;
+        // return $newProduto; <- retorno caso for uma api
+        return redirect()->route('app-index');
         }else{
         return response()->json([
              'mensagem' => 'algo deu errado'
@@ -71,5 +72,9 @@ class ProdutoController extends Controller
         ], 404);
       }
     }
+
+    public function form(){
+        return view('layout.form');
+      }
 
 }
