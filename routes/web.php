@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ConteectController::class, 'home'])->name('home');
 
 Route::get('/contato', [ConteectController:: class, 'index'])->name('app.index');
 Route::get('/form', [ProdutoController:: class, 'form'])->name('form');

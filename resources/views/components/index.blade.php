@@ -15,6 +15,13 @@
             <input type="text" name="message" placeholder="mensagem" >
             <input type="submit">
         </form>
+        @if (session('ok'))
+        <div id="msg">
+        {{session('ok')}}
+        </div>
+    @endif
+    <br>
         <a href="{{route('form')}}"><button>Formulario</button></a>
-    </div> 
+    </div>    
 @endsection
+

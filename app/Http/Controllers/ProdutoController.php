@@ -28,7 +28,7 @@ class ProdutoController extends Controller
         $newProduto->save();
         if($newProduto){
         // return $newProduto; <- retorno caso for uma api
-        return redirect()->route('app-index');
+        return redirect()->route('home')->with('sucesso', 'Formulario enviado com sucesso');
         }else{
         return response()->json([
              'mensagem' => 'algo deu errado'

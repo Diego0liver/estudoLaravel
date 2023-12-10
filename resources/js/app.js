@@ -1,1 +1,1 @@
-import './bootstrap';
+var nome = 'diego';

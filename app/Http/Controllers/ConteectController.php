@@ -13,14 +13,18 @@ class ConteectController extends Controller
     }
 
     public function store(Request $req){
-       Mail::to('diego@hotmail.com', 'Diego')->send(new Contact([
+   $emailOk= Mail::to('diego@hotmail.com', 'Diego')->send(new Contact([
         'fromName' => $req->input('nome'),
         'fromEmail' => $req->input('email'),
         'subject' => $req->input('assunto'),
         'message' => $req->input('message')
        ]));
-
-       var_dump('email enviado');
+       if($emailOk){
+      return redirect()->route('app.index')->with('ok', 'email enviado com sucesso');
+    }
     }
 
+    public function home(){
+      return view('welcome');
+    }
 }

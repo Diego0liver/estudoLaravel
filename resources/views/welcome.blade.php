@@ -8,5 +8,8 @@
 </head>
 <body>
         <h1>Inicio</h1>
-</body>
+        <a href="{{route('app.index') }}">Contato</a>
+
+
+    </body>
 </html>
