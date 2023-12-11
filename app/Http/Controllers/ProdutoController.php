@@ -10,10 +10,11 @@ class ProdutoController extends Controller
 {
     public function index(){
     // $getAllProdut = Produtos::all();
-    $getAllProdut = Produtos::paginate(perPage: 5);
+    $getAllProdut = Produtos::paginate(5);
      
-     return $getAllProdut;
+     return view('welcome', ['getAllProdut'=>$getAllProdut]);
     }
+    
 
     public function store(ProdutoReq $request){
         $newProduto = new Produtos;
@@ -40,7 +41,7 @@ class ProdutoController extends Controller
         $updateProduto = Produtos::findOrFail($id);
         if($updateProduto){
         $updateProduto->update($request->all());
-         return $updateProduto;
+        return redirect()->route('home')->with('update', 'item atualizado com sucesso');;
         }else{
             return response()->json([
                    'mensagem' => 'elgo de errado'
@@ -51,9 +52,10 @@ class ProdutoController extends Controller
     public function delet(string $id){
        $deletProduto = Produtos::destroy($id);
        if($deletProduto){
-        return response()->json([
-            'mensagem'=>'Item apagado com sucesso'
-        ], 200);
+        // return response()->json([
+        //     'mensagem'=>'Item apagado com sucesso'
+        // ], 200); <- retorno caso for API
+       return redirect()->route('home')->with('delet', 'item deletado com sucesso');
        }else{
         return response()->json([
             'mensagem'=>'elgo de errado'
@@ -65,7 +67,7 @@ class ProdutoController extends Controller
     public function show(string $id){
       $getIdProduto = Produtos::findOrFail($id);
       if($getIdProduto){
-        return $getIdProduto;
+        return view('layout.edit', ['getIdProduto'=>$getIdProduto]);
       }else{
         return response()->json([
             'mensagem'=>'elgo de errado'

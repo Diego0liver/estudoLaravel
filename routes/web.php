@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ConteectController::class, 'home'])->name('home');
+Route::get('/', [ProdutoController::class, 'index'])->name('home');
 
 Route::get('/contato', [ConteectController:: class, 'index'])->name('app.index');
+// Route::get('/produto', [ProdutoController::class, 'index'])->name('produto');
 Route::get('/form', [ProdutoController:: class, 'form'])->name('form');
 Route::post('/contato', [ConteectController:: class, 'store'])->name('app.store');
 Route::post('/form', [ProdutoController:: class, 'store'])->name('store');
+Route::delete('/delet/{id}', [ProdutoController::class, 'delet'])->name('delet');
+Route::get('/edit/{id}', [ProdutoController::class, 'show'])->name('edit');
+Route::put('/edit/{id}/put', [ProdutoController::class, 'updat'])->name('edit-put');
