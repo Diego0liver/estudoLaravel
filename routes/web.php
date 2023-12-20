@@ -4,6 +4,8 @@ use App\Http\Controllers\ConteectController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CommandsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +27,6 @@ Route::post('/form', [ProdutoController:: class, 'store'])->name('store');
 Route::delete('/delet/{id}', [ProdutoController::class, 'delet'])->name('delet');
 Route::get('/edit/{id}', [ProdutoController::class, 'show'])->name('edit');
 Route::put('/edit/{id}/put', [ProdutoController::class, 'updat'])->name('edit-put');
+
+
+Route::get('/show-controllers-methods', [CommandsController::class, 'getControllersMethods']);
