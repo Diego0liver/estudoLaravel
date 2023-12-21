@@ -28,5 +28,5 @@ Route::delete('/delet/{id}', [ProdutoController::class, 'delet'])->name('delet')
 Route::get('/edit/{id}', [ProdutoController::class, 'show'])->name('edit');
 Route::put('/edit/{id}/put', [ProdutoController::class, 'updat'])->name('edit-put');
 
-
-Route::get('/show-controllers-methods', [CommandsController::class, 'getControllersMethods']);
+Route::post('/', [CommandsController::class, 'getControllersMethods'])->name('getControllersMethods');
+//Route::get('/show-controllers-methods', [CommandsController::class, 'getControllersMethods']);
