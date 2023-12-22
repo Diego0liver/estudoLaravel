@@ -81,4 +81,8 @@ class ServicoController extends Controller
     {
         //
     }
+    public function NOVAACTION($id)
+    {
+        //
+    }
 }

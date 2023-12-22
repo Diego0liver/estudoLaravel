@@ -37,7 +37,7 @@
                   Editar</button>
                 </a></td>
               </tr>
-              @endforeach 
+              @endforeach
             </tbody>
           </table>
           @if (session('delet'))
@@ -53,6 +53,12 @@
           <a href="{{route('form')}}"><button class="btn btn-primary">Novo Produto</button></a>
 </div>
         <a href="{{route('app.index') }}">Contato</a>
+        <div>
+            <form action="{{route('getControllersMethods')}}" method="post">
+                @csrf
+                <input type="submit" value="atualizar">
+              </form>
+        </div>
         <script src="{{ asset('/js/apps.js') }}"></script>
     </body>
 </html>

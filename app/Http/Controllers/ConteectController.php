@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ConteectController extends Controller
 {
-    public function index(){
+    public function contecIndex(){
        return view('components.index');
     }
 

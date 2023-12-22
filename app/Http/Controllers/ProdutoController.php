@@ -11,12 +11,12 @@ class ProdutoController extends Controller
     public function index(){
     // $getAllProdut = Produtos::all();
     $getAllProdut = Produtos::paginate(5);
-     
+
      return view('welcome', ['getAllProdut'=>$getAllProdut]);
     }
-    
 
-    public function store(ProdutoReq $request){
+
+    public function produto_store(ProdutoReq $request){
         $newProduto = new Produtos;
         $newProduto->nome = $request->nome;
         $newProduto->preco = $request->preco;
@@ -25,7 +25,7 @@ class ProdutoController extends Controller
         //    'nome' => 'required|min:3',
         //    'preco' => 'required|max:3'
         // ]);
-      
+
         $newProduto->save();
         if($newProduto){
         // return $newProduto; <- retorno caso for uma api
@@ -37,7 +37,7 @@ class ProdutoController extends Controller
      }
     }
 
-    public function updat(Request $request, $id){
+    public function produto_updat(Request $request, $id){
         $updateProduto = Produtos::findOrFail($id);
         if($updateProduto){
         $updateProduto->update($request->all());
@@ -49,7 +49,7 @@ class ProdutoController extends Controller
         }
     }
 
-    public function delet(string $id){
+    public function produto_delet(string $id){
        $deletProduto = Produtos::destroy($id);
        if($deletProduto){
         // return response()->json([
@@ -64,7 +64,7 @@ class ProdutoController extends Controller
 
     }
 
-    public function show(string $id){
+    public function produto_show(string $id){
       $getIdProduto = Produtos::findOrFail($id);
       if($getIdProduto){
         return view('layout.edit', ['getIdProduto'=>$getIdProduto]);
@@ -75,7 +75,7 @@ class ProdutoController extends Controller
       }
     }
 
-    public function form(){
+    public function produto_form(){
         return view('layout.form');
       }
 
