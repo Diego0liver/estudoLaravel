@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use ReflectionClass;
 use ReflectionMethod;
 
+
 class GetControllersMethods extends Command
 {
     protected $signature = 'controllers:methods';
@@ -18,9 +19,20 @@ class GetControllersMethods extends Command
         $controllerFiles = glob(app_path('Http/Controllers/*Controller.php'));
 
         foreach ($controllerFiles as $controllerFile) {
-            $controllerName = pathinfo($controllerFile, PATHINFO_FILENAME);
+            $controllerName = '\\App\\Http\\Controllers\\' . pathinfo($controllerFile, PATHINFO_FILENAME);
         
-            dd($controllerName);
+            if (class_exists($controllerName)) {
+                $controllerInstance = app()->make($controllerName);
+                $controllerClass = new ReflectionClass($controllerInstance);
+                $controllerMethods = $controllerClass->getMethods(ReflectionMethod::IS_PUBLIC);
+        
+                foreach ($controllerMethods as $method) {
+                 //   dd($controllerName);
+                    dd($method->getName());
+                }
+            } else {
+                echo "Controller class not found: $controllerName\n";
+            }
         }
     }
 }

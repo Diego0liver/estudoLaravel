@@ -29,4 +29,4 @@ Route::get('/edit/{id}', [ProdutoController::class, 'show'])->name('edit');
 Route::put('/edit/{id}/put', [ProdutoController::class, 'updat'])->name('edit-put');
 
 
-Route::get('/show-controllers-methods', [CommandsController::class, 'getControllersMethods']);
+Route::get('/show', [CommandsController::class, 'getControllersMethods']);
