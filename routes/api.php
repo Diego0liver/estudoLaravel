@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CantoController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/produtos', [ProdutoController::class, 'index']);
+Route::get('/produto', [CantoController::class, 'getAll']);
 Route::post('/produtos', [ProdutoController::class, 'store']);
 Route::put('/produto/{id}', [ProdutoController::class, 'updat']);
 Route::delete('/produto/{id}', [ProdutoController::class, 'delet']);

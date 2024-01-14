@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function index(){
-    // $getAllProdut = Produtos::all();
-    $getAllProdut = Produtos::paginate(5);
+    public function index(Request $request){
+      $query = $request->input('pesquisa');
 
-     return view('welcome', ['getAllProdut'=>$getAllProdut]);
+      // Realizar a pesquisa no banco de dados
+      $resultados = Produtos::where('nome', 'LIKE', '%' . $query . '%')->get();
+
+
+     return view('welcome', compact('resultados'));
     }
 
 

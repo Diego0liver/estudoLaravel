@@ -32,4 +32,5 @@ Route::put('/edit/{id}/put', [ProdutoController::class, 'updat'])->name('edit-pu
 Route::post('/contatos', [CantoController:: class, 'create'])->name('app.create');
 
 Route::get('/contatos', [CantoController::class, 'formContatos'])->name('formContatos');
+Route::get('/', [ProdutoController::class, 'busca'])->name('busca');
 //Route::get('/show-controllers-methods', [CommandsController::class, 'getControllersMethods']);

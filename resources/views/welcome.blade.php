@@ -10,55 +10,15 @@
 <body>
         <h1>Inicio</h1>
 <div class="container">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Preco</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($getAllProdut as $item)
-              <tr>
-                <th scope="row">{{$item->id}}</th>
-                <td>{{$item->nome}}</td>
-                <td>{{$item->preco}}</td>
-                <form action="{{route('delet',['id'=>$item->id])}}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <td><button type="submit" class="btn btn-danger">
-                  Excluir</button></td>
-                </form>
-                <td><a href="{{route('edit',['id'=>$item->id])}}">
-                <button class="btn btn-info">
-                  Editar</button>
-                </a></td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-          @if (session('delet'))
-              <div id="msg">
-                {{session('delet')}}
-              </div>
-              @elseif (session('update'))
-              <div id="msg">
-                {{session('update')}}
-              </div>
-          @endif
-          {{$getAllProdut->links()}}
-          <a href="{{route('form')}}"><button class="btn btn-primary">Novo Produto</button></a>
-</div>
-        <a href="{{route('app.index') }}">Contato</a>
-        <div>
-            <form action="{{route('getControllersMethods')}}" method="post">
-                @csrf
-                <input type="submit" value="atualizar">
-              </form>
-        </div>
-        <script src="{{ asset('/js/apps.js') }}"></script>
+  <form action="/" method="GET">
+    @csrf
+    <input type="text" name="pesquisa" value="{{ old('pesquisa') }}" id="pesquisa">
+    <button type="submit">Pesquisar</button>
+  </form> 
+  @foreach ($resultados as $produto)
+  {{ $produto->nome }}
+  <!-- Adicione outros detalhes do produto conforme necessário -->
+@endforeach
+  
     </body>
 </html>

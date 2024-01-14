@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Contato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CantoController extends Controller
 {
     public function getAll(){
-        $getAllContao = Contato::all();
+      $getAllContao = Contato::select('*')
+        ->whereIn('salario', function ($query) {
+          $query->select('salario')
+              ->from('contato')
+              ->groupBy('salario')
+              ->havingRaw('count(*) > 1');
+      })->get();
         return $getAllContao;
     }
     public function formContatos(){
