@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contato;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CantoController extends Controller
 {
@@ -39,7 +40,7 @@ class CantoController extends Controller
         $newContato->CPF = $request->CPF;
 
         $newContato -> save();
-
+        Log::channel('contato')->info('novo contato chamdo ' . $newContato->nome . ' foi adiocionado');
         if ($newContato) {
             $message = 'Sucesso ao cadastrar Bens.';
             $code = 'success';
@@ -51,4 +52,21 @@ class CantoController extends Controller
     }
     return redirect()->route('formContatos')->with(['message' => $message, 'code' => $code]);
   }
+
+  public function store(string $id){
+    $getIdProduto = Contato::findOrFail($id);
+      return view('layout.getIdContato', compact('getIdProduto'));
+  }
+
+  public function deleteContato(string $id)
+  {
+    $deletLog = Contato::find($id);
+    if($deletLog){
+      $nomeDocontatoDeletado = $deletLog->nome;
+      $deletLog->delete();
+      Log::channel('contato')->info('Contato ' . $nomeDocontatoDeletado . ' foi deletado');
+    return redirect()->route('layout.logg');
+  }
+  }
+
 }

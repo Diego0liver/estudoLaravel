@@ -19,7 +19,7 @@ class ProdutoController extends Controller
     }
 
 
-    public function produto_store(ProdutoReq $request){
+    public function store(ProdutoReq $request){
         $newProduto = new Produtos;
         $newProduto->nome = $request->nome;
         $newProduto->preco = $request->preco;
@@ -40,7 +40,7 @@ class ProdutoController extends Controller
      }
     }
 
-    public function produto_updat(Request $request, $id){
+    public function updat(Request $request, $id){
         $updateProduto = Produtos::findOrFail($id);
         if($updateProduto){
         $updateProduto->update($request->all());
@@ -52,7 +52,7 @@ class ProdutoController extends Controller
         }
     }
 
-    public function produto_delet(string $id){
+    public function delet(string $id){
        $deletProduto = Produtos::destroy($id);
        if($deletProduto){
         // return response()->json([
@@ -67,7 +67,7 @@ class ProdutoController extends Controller
 
     }
 
-    public function produto_show(string $id){
+    public function show(string $id){
       $getIdProduto = Produtos::findOrFail($id);
       if($getIdProduto){
         return view('layout.edit', ['getIdProduto'=>$getIdProduto]);
@@ -78,7 +78,7 @@ class ProdutoController extends Controller
       }
     }
 
-    public function produto_form(){
+    public function form(){
         return view('layout.form');
       }
 
